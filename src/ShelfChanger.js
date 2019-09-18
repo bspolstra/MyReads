@@ -17,6 +17,7 @@ class ShelfChanger extends Component {
   }
 
   handleChange = (book, option) => {
+    this.setState({ shelf: option });
     update(book, option).then(() => {
       if (this.props.refreshShelves) {
         this.props.refreshShelves();
