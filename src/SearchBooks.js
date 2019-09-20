@@ -15,6 +15,8 @@ class SearchBooks extends Component {
       BooksAPI.search(query).then(response => {
         if (!response.error) {
           this.setState({ books: response });
+        } else {
+          this.setState({ books: [] });
         }
       });
     } else {
@@ -34,7 +36,7 @@ class SearchBooks extends Component {
     return result.length !== 0 ? result[0].shelf : "none";
   };
   render() {
-    const books = this.state.books;
+    const { books } = this.state;
 
     return (
       <div className="search-books">
@@ -54,18 +56,16 @@ class SearchBooks extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {books.length !== 0 &&
-              books
-                .filter(book => book.imageLinks && book.authors)
-                .map(book => (
-                  <Book
-                    key={book.id}
-                    book={book}
-                    title={book.title}
-                    authors={book.authors}
-                    thumbnail={book.imageLinks.thumbnail}
-                    shelf={this.getShelfName(book)}
-                  />
-                ))}
+              books.map(book => (
+                <Book
+                  key={book.id}
+                  book={book}
+                  title={book.title}
+                  authors={book.authors}
+                  thumbnail={book.imageLinks.thumbnail}
+                  shelf={this.getShelfName(book)}
+                />
+              ))}
           </ol>
         </div>
       </div>

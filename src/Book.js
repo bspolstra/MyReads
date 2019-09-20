@@ -1,8 +1,13 @@
 import React from "react";
 import ShelfChanger from "./ShelfChanger";
 
-const Book = props => {
-  const { book, title, authors, thumbnail, refreshShelves, shelf } = props;
+const Book = ({ book, title, authors, thumbnail, refreshShelves, shelf }) => {
+  const authorList = authors ? authors : ["Author Unknown"];
+  const thumb = thumbnail
+    ? thumbnail
+    : "https://via.placeholder.com/128x193?text=No%Cover";
+
+  console.log(authorList);
   return (
     <div className="book">
       <div className="book-top">
@@ -11,7 +16,7 @@ const Book = props => {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${thumbnail})`
+            backgroundImage: `url(${thumb})`
           }}
         ></div>
         {refreshShelves ? (
@@ -25,7 +30,7 @@ const Book = props => {
         )}
       </div>
       <div className="book-title">{title}</div>
-      <div className="book-authors">{authors}</div>
+      <div className="book-authors">{authorList.join(", ")}</div>
     </div>
   );
 };

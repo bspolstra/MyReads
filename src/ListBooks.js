@@ -2,31 +2,35 @@ import React, { Component } from "react";
 import Book from "./Book";
 import { Link } from "react-router-dom";
 import { getAll } from "./BooksAPI";
+import { shelves } from "./util/constants";
 
 class ListBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
       shelvedBooks: [],
-      shelves: {
-        currentlyReading: "Currently Reading",
-        wantToRead: "Want to Read",
-        read: "Read"
-      }
+      error: false
     };
 
-    getAll().then(response => this.setState({ shelvedBooks: response }));
+    getAll()
+      .then(response => this.setState({ shelvedBooks: response, error: false }))
+      .catch(error => this.setState({ error: true }));
   }
 
   refreshShelves = () => {
-    getAll().then(response => this.setState({ shelvedBooks: response }));
+    getAll()
+      .then(response => this.setState({ shelvedBooks: response, error: false }))
+      .catch(error => this.setState({ error: true }));
   };
   render() {
-    const { shelvedBooks, shelves } = this.state;
+    const { shelvedBooks, error } = this.state;
     const shelvesForSearch = Object.keys(shelvedBooks).map(book => {
       return { id: shelvedBooks[book].id, shelf: shelvedBooks[book].shelf };
     });
 
+    if (error) {
+      return <div>Please try again later.</div>;
+    }
     return (
       <div className="list-books">
         <div className="list-books-title">

@@ -4,7 +4,7 @@ import ListBooks from "./ListBooks";
 import { Route } from "react-router-dom";
 import SearchBooks from "./SearchBooks";
 
-const BooksApp = props => {
+const BooksApp = () => {
   return (
     <div className="app">
       <Route exact path="/" component={ListBooks} />
