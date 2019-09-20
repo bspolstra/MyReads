@@ -7,7 +7,6 @@ const Book = ({ book, title, authors, thumbnail, refreshShelves, shelf }) => {
     ? thumbnail
     : "https://via.placeholder.com/128x193?text=No%Cover";
 
-  console.log(authorList);
   return (
     <div className="book">
       <div className="book-top">

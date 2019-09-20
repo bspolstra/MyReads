@@ -27,7 +27,6 @@ class ListBooks extends Component {
     const shelvesForSearch = Object.keys(shelvedBooks).map(book => {
       return { id: shelvedBooks[book].id, shelf: shelvedBooks[book].shelf };
     });
-
     if (error) {
       return <div>Please try again later.</div>;
     }
@@ -37,35 +36,37 @@ class ListBooks extends Component {
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-          {Object.keys(shelves).map(
-            shelfName => (
-              <div className="bookshelf" key={shelfName}>
-                <h2 className="bookshelf-title">{shelves[shelfName]}</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    {shelvedBooks
-                      .filter(book => book.shelf === shelfName)
-                      .map(
-                        book => (
-                          <li key={book.id}>
-                            <Book
-                              book={book}
-                              title={book.title}
-                              authors={book.authors}
-                              thumbnail={book.imageLinks.thumbnail}
-                              refreshShelves={this.refreshShelves}
-                              shelf={book.shelf}
-                            />
-                          </li>
-                        ) //end of JSX
-                      ) //end of map
-                    }
-                    {/*end of inner block*/}
-                  </ol>
+          {Object.keys(shelves)
+            .filter(shelf => shelf !== "none")
+            .map(
+              shelfName => (
+                <div className="bookshelf" key={shelfName}>
+                  <h2 className="bookshelf-title">{shelves[shelfName]}</h2>
+                  <div className="bookshelf-books">
+                    <ol className="books-grid">
+                      {shelvedBooks
+                        .filter(book => book.shelf === shelfName)
+                        .map(
+                          book => (
+                            <li key={book.id}>
+                              <Book
+                                book={book}
+                                title={book.title}
+                                authors={book.authors}
+                                thumbnail={book.imageLinks.thumbnail}
+                                refreshShelves={this.refreshShelves}
+                                shelf={book.shelf}
+                              />
+                            </li>
+                          ) //end of JSX
+                        ) //end of map
+                      }
+                      {/*end of inner block*/}
+                    </ol>
+                  </div>
                 </div>
-              </div>
-            ) // end of outer JSX block
-          ) // end of outer map
+              ) // end of outer JSX block
+            ) // end of outer map
           }
         </div>
         <Link
