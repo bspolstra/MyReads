@@ -1,11 +1,27 @@
 This is my first project utlizing the React framework, and the first project in my GitHub repository in years. Below is the copy I've forked from Udacity's repository. I can't wait to get started on this!
 
-To those who are reviewing, you can simply install and run the apps by running the command in this order:
+9/18/19 To those who are reviewing, you can simply install and run the apps by running the command in this order:
 
 - npm install
 - npm start
 
 However, even if this project passes, although the project is small, I will appreciate any suggestion or comment on how I can improve my practices as a developer. Any link to an external resource will be appreciated as well.
+
+9/19/19 I've received the project review consisting suggestions and a bug to correct. When a query for search is invalid using 'android123' as an example, the result should be cleared out. The bug has bee squished away, and should work as expected.
+
+The suggestions are wonderful. Seperating the constants from the file and convert them into a reusable package is a favorite; it's great for declustering the interal logisitics of components. Another suggestion points out one stateless functional component. (As an aside, the reviewer is clearly a savvy when it comes to ES6, whereas I'm just a learning toddler playing with it.) Converting the ordianry 'props' parameter into the destructing of the 'props' object has blown my mind away. Such a clever idea!
+
+Lastly but not the least, I was encouraged to share my thought process behind this project I work on. I'm not quite sure how I express this in a technical manner. If you can share what you are interested in, or rather, what an audience of developers may be interested in reading my thought process, this can be help me to create some engagement.
+
+While I regret for not recording my thought process throughout this project, I can remember some major struggles, which turn out to be time consuming.
+
+One struggle was the passing the name of a shelf to the ShelfChanger component and set the value of the select HTML component. This was quite a piece of work. I was trying to build a logisitic that determine the name of a shelf inside the same React component by utilizing the BooksAPI's getAll method. Invoking two API calls in a sequence undermine the performance of the search and took too long for the final result to be produced. Then, I tried setting the 'selected' attribute of option that matches the book's shelf. Later, I discovered that I could simply set the value attribute of 'select' component. Later on, I came to realize that ListBook component already had the 'getAll' method in place, so why did I need to invoke it twice in two different places? To reduce the duplication of the API calls, I'd refactored the codes of ListBook component to pass the state of shelved books to the SearchBook component via a Link. This struggle took me days, which should be done in hours. I'd been comtemplating on a better approach. Now, I'm yet to find one...
+
+Another struggle was to refactor the ListBook component to elimate the redundency in shelves and books. This required a nested logistic. At this point, shelves as the constants were implemented internally, which later was refactored into a seperated file for reusability. Then, as the apps ran, it first iterated the shelves. In each shelf, it iterated the books. Along the way, object as a concept itself was difficult to be understood, and I'd been mistreating it as an Array. Too many errors were thrown when I attempted to use 'map' and 'filter' methods. Boy, was I slow to realize the difference. Upon the realization, I switched over to 'Object.keys' and 'Object.values'. 
+
+Lifecycles were the most difficult to be understood. I'd ended up not using it, seeing that how ineffective it was in applications. (If there is an external resource that demostrates its diverse applications, it can be helpful for me; I'm a visual learner. I learn best by watching. Monkey sees, and monkey does.)
+
+Going off the topic, I saw in one suggestion exhibiting a gif demostrating the behavior of the said bug above. I drooled over this tool that records and generates a clip. Can you share the name of it? This will be wonderful for communicating my struggles on my future bugs. 
 
 # MyReads Project
 
